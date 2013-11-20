@@ -1,0 +1,18 @@
+{
+  "name": "ipc-benchmark",
+  "version": "0.0.1",
+  "description": "benchmark demo for ipc-site",
+  "author": "carlos & alex",
+  "license": "BSD",
+  "scripts": {
+    "start": "nodemon app.coffee"
+  },
+  "dependencies": {
+    "express": "3.4.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "jade": "*",
+    "grunt-nodemon": "~0.1.1"
+  }
+}
