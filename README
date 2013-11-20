@@ -1,0 +1,5 @@
+install node.js http://nodejs.org/
+
+npm install		# get modules
+npm start 		# start server
+
