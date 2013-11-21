@@ -3,3 +3,18 @@ install node.js http://nodejs.org/
 npm install		# get modules
 npm start 		# start server
 
+Prerequisites
+
+Mongo DB
+http://www.mongodb.org/downloads
+or use in Linux
+>sudo apt-get update
+>sudo apt-get install mongodb
+
+# install monk module
+>sudo npm install -g nodemon
+
+# install mongodb module
+>sudo npm install -g coffee-script
+
+
