@@ -1,1 +1,1 @@
-<div class="dashboard"><ul><li ng-repeat="entry in data">{{entry.requrl}}</li></ul></div>
+<div class="dashboard"><ul class="list-group"><li ng-repeat="entry in data" class="list-group-item"><a href="{{entry.url}}" class="title">{{entry.title}}</a><span class="label label-default">{{entry.average.browser | sec }}</span></li></ul></div>

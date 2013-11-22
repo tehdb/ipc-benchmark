@@ -3,5 +3,5 @@ app.directive( "idDashboard", [ () ->
 	scope : true
 	templateUrl : '/partials/dashboard.tpl.html'
 	link : (scope, element, attrs ) ->
-		console.log("dashboard")
+		# console.log("dashboard")
 ])

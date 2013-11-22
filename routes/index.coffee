@@ -1,10 +1,10 @@
 
 exports.main = (db) ->
 	return (req, res) ->
-		db.get('data').find({}, {}, (e,docs) ->
+		db.get('data').find({}, (e,d) ->
 			res.render( "index", {
 				title: "ipc-benchmark",
-				data : docs
+				data : d
 				}
 			)
 		)
@@ -20,8 +20,37 @@ exports.timing = (db) ->
 			http : ->
 				res.send("http req")
 			json : ->
-				db.get( 'data' ).insert( req.body ) #.close()
-				res.send()
+				rb = req.body
+				
+				db.get('data').findOne({ url : rb.reqUrl }, (e, d)->
+					urlEntry = null
+
+					if not d
+						urlEntry = {
+							url : rb.reqUrl
+							title : rb.title
+							data : [] 	
+						}
+
+					else
+						urlEntry = d
+
+					urlEntry.data.push({
+						timing : rb.timing
+						memory : rb.memory
+						reqTime : rb.reqTime
+						userAgent : rb.userAgent
+					})
+
+
+					if not d
+						db.get('data').insert( urlEntry )
+					else
+						db.get('data').update( {}, urlEntry )
+
+					
+					res.send()
+				)
 
 
 exports.opt = (req, res) ->

@@ -5,8 +5,8 @@ path = require("path")
 mongo = require('mongodb')
 monk = require('monk')
 db = monk('localhost:27017/ipc-benchmark')
+#io = require('socket.io').listen(9999)
 app = express()
-
 
 app
 	.set( "port", 3000 )
@@ -28,13 +28,10 @@ http.createServer(app).listen app.get("port"), ->
 
 
 
-io = require('socket.io').listen(9999)
-io.sockets.on('connection', (socket)->
-	db.get('data').find({}, {}, (e,docs) ->
-		socket.emit('ShareDataEvent', docs)
-	)
-)
+
 ###
+
+
 _when = require('when')
 rpc = require('socket.io-rpc')
 
@@ -60,4 +57,4 @@ rpc.expose('BenchmarkChannel', {
 #         }, 4000);
 
 #     });
-# });
+# }); 

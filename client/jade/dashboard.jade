@@ -1,4 +1,6 @@
 div.dashboard
-	ul
-		li(ng-repeat="entry in data")
-			{{entry.requrl}}
+	ul.list-group
+		li.list-group-item(ng-repeat="entry in data")
+				a.title(href="{{entry.url}}") {{entry.title}}
+				span.label.label-default {{entry.average.browser | sec }}
+

@@ -1,17 +1,7 @@
 
-app.service( "DataService", ['$q', 'settings', (q, sttgs) ->
+app.service( "DataService", ['settings', '$q', '$timeout' , (sttgs, q, t) ->
 	_channel = null
 	_data = null
-
-	# connect to socket
-	connect : ()->
-		defer = q.defer()
-		RPC.connect( sttgs.socketUrl )
-		RPC.loadChannel(sttgs.socketChannelName).then( (channel) ->
-			_channel = channel
-			defer.resolve( true )
-		)
-		return defer.promise
 
 
 	getData : () -> 
