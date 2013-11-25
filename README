@@ -1,4 +1,4 @@
-Prerequisites
+<h2>Prerequisites</h2>
 
 node.js http://nodejs.org/
 
@@ -6,21 +6,19 @@ Mongo DB http://www.mongodb.org/downloads
 
 Sass/Compass http://compass-style.org/
 
-global npm packages
-
+<h2>global npm packages</h2>
 
     sudo npm install -g nodemon
     sudo npm install -g coffee-script
 
 
-local npm packages
+<h2>local npm packages</h2>
 
     npm install
 
 
-start server
+<h2>start server</h2>
 
-bash
     # start mongodb
     mongod
 
