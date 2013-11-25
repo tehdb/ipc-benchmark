@@ -11,12 +11,12 @@ io.sockets.on('connection', (socket)->
 	)
 )
 
-watcher = new MongoWatch({
-	format : 'normal'
-	db : 'ipc-benchmark'
-})
+# watcher = new MongoWatch({
+# 	format : 'normal'
+# 	db : 'ipc-benchmark'
+# })
 
-watcher.debug = console.log
+# watcher.debug = console.log
 # watcher.watch 'ipc-benchmark.data', (event) ->
 
 # 	db.get('data').find({}, (e,d) ->

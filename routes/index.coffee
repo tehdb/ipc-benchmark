@@ -1,12 +1,23 @@
 
 exports.main = (db) ->
 	return (req, res) ->
+
 		db.get('data').find({}, (e,d) ->
 			res.render( "index", {
 				title: "ipc-benchmark",
 				data : d
 				}
 			)
+		)
+
+exports.getData = (db) ->
+	return (req, res) ->
+		res.header('Access-Control-Allow-Origin', '*')
+		res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
+		res.header('Access-Control-Allow-Headers', 'Content-Type')
+		
+		db.get('data').find({}, (e,d) ->
+			res.send( d )
 		)
 
 

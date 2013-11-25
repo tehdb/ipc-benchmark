@@ -21,7 +21,7 @@ app
 	.get( "/", routes.main(db) )
 	.options("/timing", routes.opt )
 	.put( "/timing", routes.timing(db) )
-
+	.get("/timing", routes.getData(db) )
 http.createServer(app).listen app.get("port"), ->
 	console.log "Express server listening on port " + app.get("port")
 

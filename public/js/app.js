@@ -4,38 +4,14 @@
   app = angular.module("PerformanceBenchmark", []);
 
   app.constant('settings', {
-    socketChannelName: 'BenchmarkChannel',
-    socketUrl: 'http://' + window.location.hostname + ':9999'
+    dataServiceUrl: 'http://ws204011:3000/timing'
   });
 
   app.service("DataService", [
-    'settings', '$q', '$timeout', function(sttgs, q, t) {
-      var _channel, _data;
+    'settings', '$q', '$http', '$log', '$timeout', function(sttgs, q, h, l, t) {
+      var _channel, _data, _prepareData;
       _channel = null;
       _data = null;
-      return {
-        getData: function() {
-          var defer;
-          defer = q.defer();
-          if (_channel != null) {
-            _channel.getData().then(function(data) {
-              _data = data;
-              console.log(data);
-              return defer.resolve(_data);
-            });
-          } else {
-            defer.reject('channel not established');
-          }
-          return defer.promise;
-        }
-      };
-    }
-  ]);
-
-  app.controller("MainController", [
-    "$scope", "settings", "$timeout", function(scope, sttgs, to) {
-      var _connectToSocket, _prepareData;
-      scope.data = null;
       _prepareData = function(data) {
         var browser, dataCount, eIdx, edIdx, entry, entryData, timing, _i, _j, _len, _len1, _ref;
         for (eIdx = _i = 0, _len = data.length; _i < _len; eIdx = ++_i) {
@@ -46,21 +22,57 @@
           for (edIdx = _j = 0, _len1 = _ref.length; _j < _len1; edIdx = ++_j) {
             entryData = _ref[edIdx];
             timing = entryData.timing;
-            browser += timing.loadEventEnd - timing.navigationStart;
+            if (timing.loadEventEnd > 0) {
+              browser += timing.loadEventEnd - timing.navigationStart;
+            } else {
+              dataCount--;
+            }
           }
           data[eIdx].average = {
             browser: browser / dataCount
           };
         }
-        return to(function() {
-          return scope.data = data;
-        }, 0);
+        return data;
       };
-      return (_connectToSocket = function() {
-        var socket;
-        socket = io.connect(sttgs.socketUrl);
-        return socket.on('ShareDataEvent', function(data) {
-          return _prepareData(data);
+      return {
+        getData: function() {
+          var defer;
+          defer = q.defer();
+          h({
+            method: 'GET',
+            url: sttgs.dataServiceUrl
+          }).success(function(data, status, headers, config) {
+            return defer.resolve(_prepareData(data));
+          }).error(function(data, status, headers, config) {
+            return l.warn("HTTP-GET-Error: ", data, status, headers, config);
+          });
+          return defer.promise;
+        }
+      };
+    }
+  ]);
+
+  app.controller("MainController", [
+    "$scope", "settings", "$timeout", "DataService", function(scope, sttgs, to, ds) {
+      var refreshData;
+      scope.data = null;
+      scope.sortTerm = "default";
+      scope.sortRev = true;
+      scope.searchText = '';
+      scope.sortBy = function(val) {
+        if (scope.sortTerm === 'default') {
+          scope.sortRev = false;
+        }
+        if (scope.sortTerm === val) {
+          return scope.sortRev = !scope.sortRev;
+        } else {
+          scope.sortRev = false;
+          return scope.sortTerm = val;
+        }
+      };
+      return (refreshData = function() {
+        return ds.getData().then(function(data) {
+          return scope.data = data;
         });
       })();
     }
@@ -70,8 +82,26 @@
     return function(val) {
       var res;
       res = parseInt(val, 10) / 1000;
-      res = 'Ø ' + res + ' sek';
+      res = 'Ø ' + res + ' sec';
       res = res.replace('.', ',');
+      return res;
+    };
+  });
+
+  app.filter("sortlbl", function() {
+    return function(val) {
+      var res;
+      res = '';
+      switch (val) {
+        case 'default':
+          res = 'unsorted ';
+          break;
+        case 'title':
+          res = 'sort by title ';
+          break;
+        case 'average.browser':
+          res = 'sort by load time ';
+      }
       return res;
     };
   });
