@@ -8,7 +8,7 @@ Sass/Compass http://compass-style.org/
 
 global npm packages
 
-```bach
+```bash
 sudo npm install -g nodemon
 sudo npm install -g coffee-script
 ```
