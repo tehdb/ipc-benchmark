@@ -1,8 +1,8 @@
 <h2>Prerequisites</h2>
 
-node.js http://nodejs.org/
+Node.js http://nodejs.org/
 
-Mongo DB http://www.mongodb.org/downloads
+MongoDB http://www.mongodb.org/downloads
 
 Sass/Compass http://compass-style.org/
 
