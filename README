@@ -8,27 +8,21 @@ Sass/Compass http://compass-style.org/
 
 global npm packages
 
-```bash
-sudo npm install -g nodemon
-sudo npm install -g coffee-script
-```
+
+    sudo npm install -g nodemon
+    sudo npm install -g coffee-script
+
 
 local npm packages
 
-```bash
-npm install
-```
+    npm install
+
 
 start server
 
-```bash
-# start mongodb
-mongod
+bash
+    # start mongodb
+    mongod
 
-# start node
-npm start
-```
-
-
-
-
+    # start node
+    npm start
