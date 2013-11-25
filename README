@@ -1,21 +1,30 @@
-install node.js http://nodejs.org/
-
-npm install		# get modules
-npm start 		# start server
-
 Prerequisites
 
-Mongo DB
-http://www.mongodb.org/downloads
-or use in Linux
->sudo apt-get update
->sudo apt-get install mongodb
+node.js http://nodejs.org/
 
-# install monk module
->sudo npm install -g nodemon
+Mongo DB http://www.mongodb.org/downloads
 
-# install mongodb module
->sudo npm install -g coffee-script
+Sass/Compass http://compass-style.org/
+
+global npm packages
+```
+sudo npm install -g nodemon
+sudo npm install -g coffee-script
+```
+
+local npm packages
+```
+npm install
+```
+
+start server
+```
+# start mongodb
+mongod
+
+# start node
+npm start
+```
 
 
 
