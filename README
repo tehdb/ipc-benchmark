@@ -7,18 +7,21 @@ Mongo DB http://www.mongodb.org/downloads
 Sass/Compass http://compass-style.org/
 
 global npm packages
-```
+
+```bach
 sudo npm install -g nodemon
 sudo npm install -g coffee-script
 ```
 
 local npm packages
-```
+
+```bash
 npm install
 ```
 
 start server
-```
+
+```bash
 # start mongodb
 mongod
 
