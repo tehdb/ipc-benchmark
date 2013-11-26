@@ -26,7 +26,7 @@ Sass/Compass http://compass-style.org/
     npm start
 
 <h2>usage</h2>
-```HTML
+```html
 <!-- 
 data-puturl : (string) url of the web service to store measurement data
 data-retrymax : (integer) amount of attempts to read performance.timing data
