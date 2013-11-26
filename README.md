@@ -26,15 +26,15 @@ Sass/Compass http://compass-style.org/
     npm start
 
 <h2>usage</h2>
-
-    <!-- 
-        data-puturl : (string) url of the web service to store measurement data
-        data-retrymax : (integer) amount of attempts to read performance.timing data
-        data-retrydelay : (number) delay between attempt to read data
-     --!>    
-    <script src="//md5.min.js"></script>
-    <script src="//performance.js" id="idPerfMsr" data-puturl="//:3000/timing"></script>
-
+```HTML
+<!-- 
+data-puturl : (string) url of the web service to store measurement data
+data-retrymax : (integer) amount of attempts to read performance.timing data
+data-retrydelay : (number) delay between attempt to read data
+--!>    
+<script src="//md5.min.js"></script>
+<script src="//performance.js" id="idPerfMsr" data-puturl="//:3000/timing"></script>
+```
 
 
 
