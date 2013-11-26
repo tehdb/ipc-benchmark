@@ -18,12 +18,13 @@ Sass/Compass http://compass-style.org/
 
 
 <h2>start server</h2>
+```shell
+# start mongodb
+mongod
 
-    # start mongodb
-    mongod
-
-    # start node
-    npm start
+# start node
+npm start
+```
 
 <h2>usage</h2>
 
@@ -31,7 +32,7 @@ Sass/Compass http://compass-style.org/
 <!-- 
 data-puturl : (string) url of the web service to store measurement data
 data-retrymax : (integer) amount of attempts to read performance.timing data
-data-retrydelay : (number) delay between attempt to read data
+data-retrydelay : (number) delay between attempts to read data
 --!>    
 <script src="//md5.min.js"></script>
 <script src="//performance.js" id="idPerfMsr" data-puturl="//:3000/timing"></script>
