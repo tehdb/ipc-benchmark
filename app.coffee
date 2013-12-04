@@ -9,7 +9,6 @@ db = monk('localhost:27017/ipc-benchmark')
 app = express()
 
 app
-	.set( "port", 3000 )
 	.set( "views", __dirname + "/views" )
 	.set( "view engine", "jade" )
 	.use( express.logger("dev") )
@@ -22,8 +21,12 @@ app
 	.options("/timing", routes.opt )
 	.put( "/timing", routes.timing(db) )
 	.get("/timing", routes.getData(db) )
-http.createServer(app).listen app.get("port"), ->
-	console.log "Express server listening on port " + app.get("port")
+
+app.listen( 3000 )
+console.log "Express server listening on port 3000"
+
+# http.createServer(app).listen app.get("port"), ->
+# 	console.log "Express server listening on port " + app.get("port")
 
 
 

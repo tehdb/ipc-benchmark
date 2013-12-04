@@ -8,6 +8,8 @@ app.service( "DataService", ['settings', '$q', '$http', '$log', '$timeout' , (st
 		for entry, eIdx in data		
 			dataCount = entry.data.length
 			browser = 0
+			entry.url = 'http://' + entry.url
+
 			for entryData, edIdx in entry.data
 				timing = entryData.timing
 
@@ -18,14 +20,11 @@ app.service( "DataService", ['settings', '$q', '$http', '$log', '$timeout' , (st
 
 			data[eIdx].average = {
 				browser : browser / dataCount
-
 			}
 
 		return data
 
 	return {
-
-
 		getData : () ->
 			defer = q.defer()
 			h(

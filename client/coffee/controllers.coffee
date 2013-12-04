@@ -1,5 +1,4 @@
 app.controller("MainController", ["$scope", "settings", "$timeout", "DataService", (scope, sttgs, to, ds ) ->
-
 	scope.data = null
 	scope.sortTerm = "default"
 	scope.sortRev = true

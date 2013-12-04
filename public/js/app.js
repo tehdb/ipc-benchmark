@@ -18,6 +18,7 @@
           entry = data[eIdx];
           dataCount = entry.data.length;
           browser = 0;
+          entry.url = 'http://' + entry.url;
           _ref = entry.data;
           for (edIdx = _j = 0, _len1 = _ref.length; _j < _len1; edIdx = ++_j) {
             entryData = _ref[edIdx];

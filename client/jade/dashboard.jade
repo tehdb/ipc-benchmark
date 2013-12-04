@@ -22,7 +22,7 @@ div.dashboard
 	p						
 		ul.list-group
 			li.list-group-item(ng-repeat="entry in data | filter:searchText | orderBy:sortTerm:sortRev")
-					a.title(href="{{entry.url}}") {{entry.title}}
+					a.title(href="{{entry.url}}", target="_blank") {{entry.title}}
 					span.label.label-default {{entry.average.browser | sec }}
 
 
