@@ -4,7 +4,7 @@
   app = angular.module("PerformanceBenchmark", []);
 
   app.constant('settings', {
-    dataServiceUrl: 'http://ws204011:3000/timing'
+    dataServiceUrl: "" + window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/timing"
   });
 
   app.service("DataService", [
@@ -44,7 +44,8 @@
           }).success(function(data, status, headers, config) {
             return defer.resolve(_prepareData(data));
           }).error(function(data, status, headers, config) {
-            return l.warn("HTTP-GET-Error: ", data, status, headers, config);
+            l.warn("HTTP-GET-Error: ", data, status, headers, config);
+            return defer.reject(false);
           });
           return defer.promise;
         }

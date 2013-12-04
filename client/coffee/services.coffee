@@ -23,19 +23,23 @@ app.service( "DataService", ['settings', '$q', '$http', '$log', '$timeout' , (st
 
 		return data
 
-	getData : () ->
-		defer = q.defer()
-		h(
-			method : 'GET'
-			url : sttgs.dataServiceUrl
-		).success((data, status, headers, config)->
-			defer.resolve( _prepareData(data) )
-		).error((data, status, headers, config )->
-			l.warn( "HTTP-GET-Error: ", data, status, headers, config )
-			# defer.reject(status, config)#
+	return {
 
-		)
-		return defer.promise
+
+		getData : () ->
+			defer = q.defer()
+			h(
+				method : 'GET'
+				url : sttgs.dataServiceUrl
+			).success((data, status, headers, config) ->
+				defer.resolve( _prepareData(data) )
+			).error((data, status, headers, config ) ->
+				l.warn( "HTTP-GET-Error: ", data, status, headers, config )
+				defer.reject(false)
+
+			)
+			return defer.promise
+	}
 
 # getData : () -> 
 # 	defer = q.defer()

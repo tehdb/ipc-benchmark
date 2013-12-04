@@ -1,7 +1,7 @@
 app = angular.module("PerformanceBenchmark", [])
 
 app.constant('settings', {
-	dataServiceUrl : 'http://ws204011:3000/timing'
+	dataServiceUrl : "#{window.location.protocol}//#{window.location.hostname}:#{window.location.port}/timing"
 	# socketChannelName : 'BenchmarkChannel'
 	# socketUrl : 'http://' + window.location.hostname + ':9999'
 })
